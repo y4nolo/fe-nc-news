@@ -4,11 +4,14 @@ const request = axios.create({
   baseURL: "https://ac-nc-news-be.herokuapp.com/api"
 });
 
-export const getAllArticles = topic => {
+export const getAllArticles = (topic, author, votes, created_at) => {
   return request
     .get("/articles/", {
       params: {
-        topic: topic
+        topic: topic,
+        author: author,
+        votes: votes,
+        created_at: created_at
       }
     })
     .then(({ data }) => {
@@ -24,9 +27,34 @@ export const getSingleArticle = article_id => {
   });
 };
 
+export const getArticlesByTopic = topic => {
+  return request
+    .get("/articles/", {
+      params: { topic: topic }
+    })
+    .then(({ data }) => {
+      console.log(data);
+      return data.articles;
+    });
+};
+
 export const getAllTopics = () => {
   return request.get("/topics/").then(({ data }) => {
     console.log(data);
     return data.topics;
+  });
+};
+
+export const getCommentByArticleId = article_id => {
+  return request.get(`/${article_id}/comments/`).then(({ data }) => {
+    console.log(data);
+    return data.comments;
+  });
+};
+
+export const getUserByUserNameId = username => {
+  return request.get(`/users /$ {username}`).then(({ data }) => {
+    console.log(data);
+    return data.user;
   });
 };

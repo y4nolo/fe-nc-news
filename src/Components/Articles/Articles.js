@@ -1,6 +1,7 @@
 import React from "react";
 import ArticlesList from "./ArticlesList";
 import * as api from "../Api";
+import PostArticle from "./PostArticle";
 
 class Articles extends React.Component {
   state = {
@@ -21,6 +22,7 @@ class Articles extends React.Component {
           {/* https://www.npmjs.com/package/react-dropdown */}
         </div>
         <ArticlesList articles={articles} />
+        <PostArticle />
       </div>
     );
   }

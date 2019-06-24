@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "@reach/router";
+import PostComments from "../Comments/PostComments";
+
 import * as api from "../Api";
 
 class SingleArticle extends Component {
@@ -17,9 +18,10 @@ class SingleArticle extends Component {
         Topic: {article.topic} Author: {article.author} Created:{" "}
         {article.created_at} Comments: {article.comment_count} Votes:{" "}
         {article.votes}
-        <br />
         <button> 🔺 </button>
         <button> 🔻 </button>
+        <br />
+        <PostComments />
       </div>
     ) : null;
   }
