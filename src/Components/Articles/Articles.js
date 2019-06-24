@@ -1,7 +1,6 @@
 import React from "react";
 import ArticlesList from "./ArticlesList";
 import * as api from "../Api";
-import axios from "axios";
 
 class Articles extends React.Component {
   state = {

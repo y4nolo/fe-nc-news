@@ -16,3 +16,17 @@ export const getAllArticles = topic => {
       return data.articles;
     });
 };
+
+export const getSingleArticle = article_id => {
+  return request.get(`/articles/${article_id}`).then(({ data }) => {
+    console.log(data);
+    return data.article;
+  });
+};
+
+export const getAllTopics = () => {
+  return request.get("/topics/").then(({ data }) => {
+    console.log(data);
+    return data.topics;
+  });
+};
