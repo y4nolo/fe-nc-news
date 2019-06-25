@@ -9,7 +9,7 @@ import SingleArticle from "./Components/Articles/SingleArticle";
 import Topics from "./Components/Topics/Topics";
 import User from "./Components/User/User";
 import Comments from "./Components/Comments/Comments";
-
+import SingleTopic from "./Components/Topics/SingleTopic";
 class App extends React.Component {
   state = {
     topics: null,
@@ -27,6 +27,7 @@ class App extends React.Component {
           <Articles path="/" />
           <SingleArticle path="/:article_id" />
           <Topics path="/topics" topics={this.state.topics} />
+          <SingleTopic path="/topics/:topic" />
           <User path="/user/:username" user={this.state.user} />
           <Comments path="/:article_id/comments" />
         </Router>

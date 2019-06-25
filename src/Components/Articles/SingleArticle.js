@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import PostComments from "../Comments/PostComments";
-
+import VoteArticle from "./VoteArticle";
 import * as api from "../Api";
 
 class SingleArticle extends Component {
@@ -12,7 +12,7 @@ class SingleArticle extends Component {
   render() {
     const { article } = this.state;
     return this.state.article ? (
-      <div>
+      <div key={article.article_id}>
         <h2>{article.title}</h2>
         <p>{article.body} </p>
         Topic: {article.topic}
@@ -22,8 +22,7 @@ class SingleArticle extends Component {
           Comments: {article.comment_count}
         </Link>
         Votes: {article.votes}
-        <button> 🔺 </button>
-        <button> 🔻 </button>
+        <VoteArticle />
         <br />
         <PostComments />
       </div>

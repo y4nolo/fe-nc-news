@@ -9,13 +9,10 @@ class Topics extends React.Component {
 
   render() {
     const { topics } = this.state;
-
     return (
       <div>
         <h2> Topics</h2>
-        <div>
-          <TopicsList topics={topics} />
-        </div>
+        <div>{topics && <TopicsList topics={topics} />}</div>
       </div>
     );
   }

@@ -29,7 +29,7 @@ export const getSingleArticle = article_id => {
 
 export const getArticlesByTopic = topic => {
   return request
-    .get("/articles/", {
+    .get(`/articles`, {
       params: { topic: topic }
     })
     .then(({ data }) => {
