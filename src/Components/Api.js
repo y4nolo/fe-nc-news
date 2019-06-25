@@ -39,21 +39,21 @@ export const getArticlesByTopic = topic => {
 };
 
 export const getAllTopics = () => {
-  return request.get("/topics/").then(({ data }) => {
+  return request.get("/topics").then(({ data }) => {
     console.log(data);
     return data.topics;
   });
 };
 
 export const getCommentByArticleId = article_id => {
-  return request.get(`/${article_id}/comments/`).then(({ data }) => {
+  return request.get(`articles/${article_id}/comments/`).then(({ data }) => {
     console.log(data);
     return data.comments;
   });
 };
 
-export const getUserByUserNameId = username => {
-  return request.get(`/users /$ {username}`).then(({ data }) => {
+export const getUserByUserNameId = user => {
+  return request.get(`/users/${user}`).then(({ data }) => {
     console.log(data);
     return data.user;
   });

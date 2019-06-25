@@ -7,19 +7,31 @@ import NavBar from "./Components/NavBar";
 import Articles from "./Components/Articles/Articles";
 import SingleArticle from "./Components/Articles/SingleArticle";
 import Topics from "./Components/Topics/Topics";
+import User from "./Components/User/User";
+import Comments from "./Components/Comments/Comments";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <NavBar />
-      <Router>
-        <Articles path="/" />
-        <SingleArticle path="/:article_id" />
-        <Topics path="/topics" />
-      </Router>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    topics: null,
+    isLogin: null,
+    votes: 0,
+    user: [],
+    username: []
+  };
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <NavBar />
+        <Router>
+          <Articles path="/" />
+          <SingleArticle path="/:article_id" />
+          <Topics path="/topics" topics={this.state.topics} />
+          <User path="/user/:username" user={this.state.user} />
+          <Comments path="/:article_id/comments" />
+        </Router>
+      </div>
+    );
+  }
 }
-
 export default App;

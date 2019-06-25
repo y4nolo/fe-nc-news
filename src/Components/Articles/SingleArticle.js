@@ -15,9 +15,13 @@ class SingleArticle extends Component {
       <div>
         <h2>{article.title}</h2>
         <p>{article.body} </p>
-        Topic: {article.topic} Author: {article.author} Created:{" "}
-        {article.created_at} Comments: {article.comment_count} Votes:{" "}
-        {article.votes}
+        Topic: {article.topic}
+        <Link to={`/user/${article.author}`}>Author: {article.author}</Link>
+        Created: {article.created_at}
+        <Link to={`/${article.article_id}/comments/`}>
+          Comments: {article.comment_count}
+        </Link>
+        Votes: {article.votes}
         <button> 🔺 </button>
         <button> 🔻 </button>
         <br />
@@ -27,7 +31,7 @@ class SingleArticle extends Component {
   }
   componentDidMount() {
     const { article_id } = this.props;
-    api.getSingleArticle().then(article => {
+    api.getSingleArticle(article_id).then(article => {
       this.setState({ article: article });
     });
   }
