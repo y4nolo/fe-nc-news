@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import * as api from "../Api";
 
-class VoteComment extends Component {
+class VoteArticle extends Component {
   state = {
     voteChange: 0
   };
 
   render() {
-    const { votes, comment_id } = this.props;
+    const { votes, article_id } = this.props;
     const { voteChange } = this.state;
     return (
       <div>
@@ -22,10 +22,10 @@ class VoteComment extends Component {
     );
   }
   handleVote = increment => {
-    const { comment_id } = this.props;
-    console.log(comment_id, this.props);
+    const { article_id } = this.props;
+    console.log(article_id, this.props);
     api
-      .modifyVotesforComments(comment_id, increment)
+      .modifyVotesforArticles(article_id, increment)
       .then(updatedArticle => {
         this.setState(prevState => {
           return {
@@ -42,4 +42,4 @@ class VoteComment extends Component {
   };
 }
 
-export default VoteComment;
+export default VoteArticle;

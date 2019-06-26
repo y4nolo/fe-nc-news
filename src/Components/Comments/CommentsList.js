@@ -13,7 +13,7 @@ function CommentsList({ comments }) {
 
         <p>Posted at: {comment.created_at}</p>
         <br />
-        <DeleteComment />
+        <DeleteComment comment_id={comment.comment_id} />
         <VoteComment comment_id={comment.comment_id} votes={comment.votes} />
       </div>
     );

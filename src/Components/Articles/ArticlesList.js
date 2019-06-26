@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import VoteArticle from "./VoteArticle";
 
 function ArticlesList({ articles }) {
   return (
@@ -21,8 +22,10 @@ function ArticlesList({ articles }) {
             <br />
             <br />
             <div>
-              <button onClick={() => this.handleVote(1)}> 🔺 </button>
-              <button onClick={() => this.handleVote(-1)}> 🔻 </button>
+              <VoteArticle
+                article_id={article.article_id}
+                votes={article.votes}
+              />
             </div>
             <br />
             <br />

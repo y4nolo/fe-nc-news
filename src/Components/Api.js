@@ -56,7 +56,7 @@ export const getUserByUserNameId = user => {
 //vote for articles
 export const modifyVotesforArticles = (article_id, increment) => {
   return request
-    .patch(`/articles/${article_id}/comments/`, { inc_votes: increment })
+    .patch(`/articles/${article_id}`, { inc_votes: increment })
     .then(({ data: { article } }) => {
       console.log(article);
     });

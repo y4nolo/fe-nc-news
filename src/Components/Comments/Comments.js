@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as api from "../Api";
-import { Link } from "@reach/router";
 import CommentsList from "./CommentsList";
 
 class Comments extends Component {
@@ -8,16 +7,11 @@ class Comments extends Component {
     comments: []
   };
   render() {
-    const { comments, comment_id, article_id, votes } = this.state;
+    const { comments } = this.state;
     return (
       <div>
         <h2> Comments</h2>
-        <CommentsList
-          comments={comments}
-          comment_id={comment_id}
-          votes={votes}
-          article_id={article_id}
-        />
+        <CommentsList comments={comments} />
         <div />
       </div>
     );
@@ -27,6 +21,7 @@ class Comments extends Component {
     api
       .getCommentByArticleId(this.props.article_id)
       .then(comments => {
+        console.log(comments);
         this.setState({ comments });
       })
       .catch(err => {
