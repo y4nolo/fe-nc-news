@@ -15,7 +15,7 @@ class SingleTopic extends Component {
   }
   componentDidMount() {
     const { topic } = this.props;
-    api.getArticlesByTopic(topic).then(articles => {
+    api.getAllArticles(topic).then(articles => {
       this.setState({ articles });
     });
   }

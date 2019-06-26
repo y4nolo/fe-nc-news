@@ -12,7 +12,7 @@ class User extends Component {
         <img src={`${user.avatar_url}`} alt="profile" />
         <h2>User: {user.username}</h2>
         <p>Name: {user.name}</p>
-        <Link to={`/articles/:${user.username}`}>
+        <Link to={`/author/${user.username}`}>
           <button>Posts </button>
         </Link>
       </div>

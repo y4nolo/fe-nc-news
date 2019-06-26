@@ -1,38 +1,28 @@
 import React, { Component } from "react";
 import * as api from "../Api";
 import { Link } from "@reach/router";
-import DeleteComment from "./DeleteComment";
-import VoteComment from "./VoteComment";
+import CommentsList from "./CommentsList";
 
 class Comments extends Component {
   state = {
     comments: []
   };
   render() {
-    const { comments, article } = this.state;
-
+    const { comments, comment_id, article_id, votes } = this.state;
     return (
       <div>
-        {comments.map(comment => {
-          return (
-            <div key={comment.comment_id} className="listItem">
-              <p>Comment:{comment.body} </p>
-
-              <Link to={`/user/${comment.author}`}>
-                Author: {comment.author}
-              </Link>
-
-              <p>Vote: {comment.votes}</p>
-              <p>Posted at: {comment.created_at}</p>
-              <VoteComment />
-              <br />
-              <DeleteComment />
-            </div>
-          );
-        })}
+        <h2> Comments</h2>
+        <CommentsList
+          comments={comments}
+          comment_id={comment_id}
+          votes={votes}
+          article_id={article_id}
+        />
+        <div />
       </div>
     );
   }
+
   componentDidMount() {
     api
       .getCommentByArticleId(this.props.article_id)
@@ -42,6 +32,12 @@ class Comments extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  componentDidUpdate(prevProp, prevState, increment) {
+    if (prevState.votes !== this.state.votes) {
+      this.setState({ votes: prevState.votes + increment });
+    }
   }
 }
 

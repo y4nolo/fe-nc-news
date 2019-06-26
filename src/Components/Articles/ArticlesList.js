@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "@reach/router";
-import VoteArticle from "./VoteArticle";
 
 function ArticlesList({ articles }) {
   return (
@@ -21,7 +20,10 @@ function ArticlesList({ articles }) {
             Votes: {article.votes}
             <br />
             <br />
-            <VoteArticle />
+            <div>
+              <button onClick={() => this.handleVote(1)}> 🔺 </button>
+              <button onClick={() => this.handleVote(-1)}> 🔻 </button>
+            </div>
             <br />
             <br />
           </div>
@@ -30,10 +32,10 @@ function ArticlesList({ articles }) {
     </div>
   );
 
-  /*handleVote =(direction) => {
+  /*handleVote =(increment) => {
     patchArticle (this.props.article_id, 1 ).then(updatedArticle =>{
     this.setState((prevState) => {
-    return {votes: prevState.votes + direction
+    return {votes: prevState.votes + increment
     })}
     })}*/
 }

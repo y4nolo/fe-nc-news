@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import PostComments from "../Comments/PostComments";
-import VoteArticle from "./VoteArticle";
 import * as api from "../Api";
 
 class SingleArticle extends Component {
@@ -22,7 +21,10 @@ class SingleArticle extends Component {
           Comments: {article.comment_count}
         </Link>
         Votes: {article.votes}
-        <VoteArticle />
+        <div>
+          <button onClick={() => this.handleVote(1)}> 🔺 </button>
+          <button onClick={() => this.handleVote(-1)}> 🔻 </button>
+        </div>
         <br />
         <PostComments />
       </div>
