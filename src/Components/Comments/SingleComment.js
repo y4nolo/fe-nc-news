@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as api from "../Api";
-import { Link } from "@reach/router";
 import CommentsList from "./CommentsList";
 import VoteComment from "./VoteComment";
 // import { VoteComment } from "./VoteComment";

@@ -96,6 +96,7 @@ export const deleteComment = (comment_id, username, body) => {
     })
     .then(response => {
       console.log(response);
+      console.log("comment deleted");
       return response;
     });
 };

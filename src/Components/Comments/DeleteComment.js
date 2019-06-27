@@ -16,8 +16,8 @@ class DeleteComment extends Component {
       .then(comments => {
         this.setState({ comments });
       })
-      .then(article => {
-        navigate(`/articles/${article_id}/comments`);
+      .then(comment_id => {
+        this.props.displayRefreshedComments(comment_id);
       })
       .catch(err => {
         console.log(err);
