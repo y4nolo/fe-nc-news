@@ -29,7 +29,7 @@ class VoteArticle extends Component {
       .then(updatedArticle => {
         this.setState(prevState => {
           return {
-            votes: prevState.votes + increment
+            voteChange: prevState.voteChange + increment
           };
         });
       })

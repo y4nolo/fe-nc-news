@@ -5,7 +5,9 @@ import * as api from "../Api";
 class Articles extends React.Component {
   state = {
     articles: [],
-    sort_by: ""
+    orderBy: null,
+    sortBy: null,
+    page: 1
   };
 
   render() {
@@ -29,23 +31,43 @@ class Articles extends React.Component {
         <>
           <ArticlesList articles={articles} />
         </>
+        <button onClick={() => this.changePage(-1)}>Prev</button>
+        <button onClick={() => this.changePage(1)}>Next</button>
       </div>
     );
   }
-  updateSorting = e => {
-    this.setState({ sort_by: e.target.value });
+
+  changePage = direction => {
+    this.setState(prevState => {
+      return { page: this.state.page + direction };
+    });
   };
 
-  componentDidMount(query) {
-    api.getAllArticles(query).then(articles => {
-      this.setState({ articles });
-    });
+  setSortBy = sortBy => {
+    this.setState({ sortBy });
+  };
+
+  setOrderBy = orderBy => {
+    this.setState({ orderBy });
+  };
+
+  componentDidMount() {
+    api
+      .getAllArticles()
+      .then(articles => {
+        this.setState({ articles });
+      })
+      .catch(err => {
+        this.setState({ error: err });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { topic, sort_by } = this.state;
-    if (prevState.sort_by !== sort_by) {
-      this.fetchArticles({ topic, sort_by });
+    const topicChange = prevProps.topic !== this.props.topic;
+    const sortByChange = prevState.sortby !== this.state.Sortby;
+    const orderByChange = prevState.orderBy !== this.state.orderBy;
+    if (topicChange || sortByChange || orderByChange) {
+      this.getAllArticles();
     }
   }
 }

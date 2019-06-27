@@ -15,11 +15,20 @@ class Comments extends Component {
       <div>
         <h2> Comments</h2>
         <CommentsList comments={comments} />
-        <PostComments article_id={article_id} />
+        <PostComments
+          article_id={article_id}
+          displayNewComment={this.displayNewComment}
+        />
         <div />
       </div>
     );
   }
+
+  displayNewComment = comment => {
+    this.setState(prevState => {
+      return { comments: [...prevState.comments, comment] };
+    });
+  };
 
   componentDidMount() {
     api

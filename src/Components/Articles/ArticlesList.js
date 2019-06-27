@@ -4,7 +4,7 @@ import VoteArticle from "./VoteArticle";
 
 function ArticlesList({ articles }) {
   return (
-    <div class="6u 12u$(medium)">
+    <div>
       {articles.map(article => {
         return (
           <div key={articles.article_id} className="listItem">

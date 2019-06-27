@@ -38,7 +38,8 @@ class PostComments extends Component {
     console.log(user);
     api
       .postNewComment({ article_id, user, body })
-      .then(article => {
+      .then(comment => {
+        this.props.displayNewComment(comment);
         // navigate(`/articles/${article_id}/comments`);
         this.setState({ body: "" });
       })

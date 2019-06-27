@@ -10,7 +10,7 @@ import Articles from "./Components/Articles/Articles";
 import SingleArticle from "./Components/Articles/SingleArticle";
 import Topics from "./Components/Topics/Topics";
 import User from "./Components/User/User";
-// import Comments from "./Components/Comments/Comments";
+import Comments from "./Components/Comments/Comments";
 import SingleTopic from "./Components/Topics/SingleTopic";
 import UserArticles from "./Components/User/UserArticles";
 import Footer from "./Components/Footer";
@@ -43,11 +43,11 @@ class App extends React.Component {
           <User path="/user/:username" user={this.state.user} />
           <UserArticles path="/author/:user" />
 
-          {/* <Comments
+          <Comments
             path="/:article_id/comments"
             article_id={this.state.article_id}
             user={this.state.user}
-          /> */}
+          />
         </Router>
 
         <Footer />
