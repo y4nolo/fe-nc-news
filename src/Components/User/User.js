@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
 import * as api from "../Api";
+import UserArticles from "./UserArticles";
 
 class User extends Component {
-  state = { user: [] };
+  state = { user: [], articles: [] };
 
   render() {
     const { user } = this.state;
@@ -12,9 +12,7 @@ class User extends Component {
         <img src={`${user.avatar_url}`} alt="profile" />
         <h2>User: {user.username}</h2>
         <p>Name: {user.name}</p>
-        <Link to={`/author/${user.username}`}>
-          <button>Posts </button>
-        </Link>
+        <UserArticles user={user} />
       </div>
     );
   }

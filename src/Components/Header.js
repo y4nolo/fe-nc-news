@@ -1,9 +1,15 @@
 import React from "react";
+import "../css/main.css";
 
 function Header() {
   return (
-    <div>
-      <h1>NC News</h1>
+    <div id="header">
+      <h1>
+        <a href="/">
+          <span>NorthCoders News</span>
+        </a>
+      </h1>
+      <a href="#menu">Menu</a>
     </div>
   );
 }

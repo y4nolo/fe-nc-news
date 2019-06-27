@@ -73,16 +73,16 @@ export const modifyVotesforComments = (comment_id, increment) => {
 };
 
 //post new Comment
-export const postNewComment = (article_id, username, body) => {
+export const postNewComment = ({ article_id, user: username, body }) => {
+  console.log(article_id, username, body);
   return request
     .post(`/articles/${article_id}/comments`, {
-      username: "username",
-      body: "body"
+      username: username,
+      body: body
     })
-    .then(response => {
-      console.log(response);
-
-      return response;
+    .then(({ data }) => {
+      console.log(data);
+      return data.comment;
     });
 };
 

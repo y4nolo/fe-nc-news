@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../Api";
 import CommentsList from "./CommentsList";
+import PostComments from "./PostComments";
 
 class Comments extends Component {
   state = {
@@ -8,10 +9,13 @@ class Comments extends Component {
   };
   render() {
     const { comments } = this.state;
+    const { article_id } = this.props;
+    console.log(article_id, this.state);
     return (
       <div>
         <h2> Comments</h2>
         <CommentsList comments={comments} />
+        <PostComments article_id={article_id} />
         <div />
       </div>
     );
@@ -27,12 +31,6 @@ class Comments extends Component {
       .catch(err => {
         console.log(err);
       });
-  }
-
-  componentDidUpdate(prevProp, prevState, increment) {
-    if (prevState.votes !== this.state.votes) {
-      this.setState({ votes: prevState.votes + increment });
-    }
   }
 }
 

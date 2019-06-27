@@ -1,15 +1,26 @@
 import React, { Component } from "react";
+import { navigate } from "@reach/router";
+import * as api from "../Api";
 
 class PostComments extends Component {
+  state = {
+    user: "jessjelly",
+    body: ""
+  };
   render() {
+    const { body, user } = this.state;
     return (
       <div>
-        <form className="postcomment">
-          <p>Post comment as USER:</p>
+        <form
+          onSubmit={this.handlePostComment}
+          class="row uniform"
+          className="postcomment"
+        >
+          <p>Post comment as {`${user}`}:</p>
           <textarea
-            className="commentText"
-            cols="60"
-            rows="10"
+            value={body}
+            name="body"
+            onChange={this.handleChange}
             placeholder="Say Something..."
           />
           <br />
@@ -18,6 +29,31 @@ class PostComments extends Component {
       </div>
     );
   }
+
+  handlePostComment = event => {
+    console.log("subimtted");
+    event.preventDefault();
+    const { article_id } = this.props;
+    const { body, user } = this.state;
+    console.log(user);
+    api
+      .postNewComment({ article_id, user, body })
+      .then(article => {
+        // navigate(`/articles/${article_id}/comments`);
+        this.setState({ body: "" });
+      })
+      .catch(err => {
+        console.dir(err);
+      });
+  };
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    console.log(value);
+    this.setState({
+      [name]: value
+    });
+  };
 }
 
 export default PostComments;

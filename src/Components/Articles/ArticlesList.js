@@ -4,21 +4,18 @@ import VoteArticle from "./VoteArticle";
 
 function ArticlesList({ articles }) {
   return (
-    <div>
+    <div class="6u 12u$(medium)">
       {articles.map(article => {
         return (
           <div key={articles.article_id} className="listItem">
             <Link to={`/${article.article_id}`}>
-              <h2> {article.title}</h2>
+              <h3> {article.title}</h3>
             </Link>
             Topic: {article.topic}
             Author:
             <Link to={`/user/${article.author}`}>{article.author}</Link>
             Created: {article.created_at}
-            <Link to={`/${article.article_id}/comments`}>
-              Comments: {article.comment_count}{" "}
-            </Link>
-            Votes: {article.votes}
+            Comments: {article.comment_count} Votes: {article.votes}
             <br />
             <br />
             <div>
