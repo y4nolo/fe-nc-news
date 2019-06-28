@@ -11,7 +11,7 @@ class Comments extends Component {
   render() {
     const { comments } = this.state;
     const { article_id } = this.props;
-    console.log(article_id, this.state);
+    console.log(this.displayRefreshedComments);
     return (
       <div>
         <h2> Comments</h2>
@@ -36,13 +36,13 @@ class Comments extends Component {
   //if commentID matched a comment being filtered then return comments to new array
   displayRefreshedComments = comment_id => {
     const { comments } = this.state;
-    this.setState(prevState => {
-      return comments.filter(comments => {
-        if (comments.comments_id !== comment_id) {
-          return { comments: comments };
-        }
-      });
+    const filteredComments = comments.filter(comment => {
+      if (comment.comment_id !== comment_id) {
+        return { comments: comment };
+      }
     });
+    this.setState({ comments: filteredComments });
+    console.log(filteredComments);
   };
 
   componentDidMount() {

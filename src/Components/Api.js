@@ -5,21 +5,23 @@ const request = axios.create({
 });
 
 //also get articles by topic
-export const getAllArticles = (topic, author, votes, created_at) => {
+//order_by is 'order' in backend?
+export const getAllArticles = ({ author, topic, sort_by, order_by, p }) => {
   return request
-    .get("/articles/", {
+    .get("/articles", {
       params: {
-        topic: topic,
         author: author,
-        votes: votes,
-        created_at: created_at
+        topic: topic,
+        sort_by: sort_by,
+        order: order_by,
+        p: p
       }
     })
     .then(({ data }) => {
-      console.log(data);
       return data.articles;
     });
 };
+// sort_by, order, author, topic, limit, p
 
 export const getSingleArticle = article_id => {
   return request.get(`/articles/${article_id}`).then(({ data }) => {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as api from "../Api";
-import { navigate } from "@reach/router";
 class DeleteComment extends Component {
   render() {
     return (
@@ -10,14 +9,13 @@ class DeleteComment extends Component {
     );
   }
   handleDelete = event => {
-    const { comment_id, article_id } = this.props;
+    const { comment_id, article_id, displayRefreshedComments } = this.props;
+    console.log(displayRefreshedComments);
     api
       .deleteComment(comment_id)
-      .then(comments => {
-        this.setState({ comments });
-      })
-      .then(comment_id => {
-        this.props.displayRefreshedComments(comment_id);
+      .then(() => {
+        console.log(comment_id, "commentiddeletess");
+        displayRefreshedComments(comment_id);
       })
       .catch(err => {
         console.log(err);

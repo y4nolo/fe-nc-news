@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import DeleteComment from "./DeleteComment";
 import VoteComment from "./VoteComment";
 
-function CommentsList({ comments }) {
+function CommentsList({ comments, displayRefreshedComments }) {
   return comments.map(comment => {
     return (
       <div key={comment.comment_id} className="listItem">
@@ -13,7 +13,10 @@ function CommentsList({ comments }) {
 
         <p>Posted at: {comment.created_at}</p>
         <br />
-        <DeleteComment comment_id={comment.comment_id} />
+        <DeleteComment
+          comment_id={comment.comment_id}
+          displayRefreshedComments={displayRefreshedComments}
+        />
         <VoteComment comment_id={comment.comment_id} votes={comment.votes} />
       </div>
     );
